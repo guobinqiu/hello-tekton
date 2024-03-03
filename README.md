@@ -11,7 +11,7 @@ Ways of building:
   4. EventListener -> TriggerTemplate -> TaskRun
 ```
 
-We don't use `Tekton Catalog`, simply write `github` and `dockerhub` manually
+We don't use `Tekton Catalog`, simply write `github` and `dockerhub` private repositories manually
 
 ## Testcases
 
