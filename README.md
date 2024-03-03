@@ -17,7 +17,7 @@ We don't use `Tekton Catalog`, simply write `git` and `docker` manually
 
 ### git
 
-[test1.yaml](git/test1.yaml) (Recomended)
+[test1.yaml](git/test1.yaml) (Recommended)
 
 - ssh auth
 - with sa
@@ -50,7 +50,7 @@ We don't use `Tekton Catalog`, simply write `git` and `docker` manually
 
 ### docker
 
-[test1.yaml](docker/test1.yaml) (Recomended)
+[test1.yaml](docker/test1.yaml) (Recommended)
 
 - ssh auth
 - with sa
