@@ -1,16 +1,4 @@
 ---
-apiVersion: v1
-kind: Secret
-metadata:
-  name: key-for-docker
-  namespace: tekton-demo
-  annotations:
-    tekton.dev/docker-0: https://index.docker.io/v1/
-type: kubernetes.io/basic-auth
-stringData:
-  username: qiuguobin
-  password: dckr_pat_DamamBGkd3L...
----
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
