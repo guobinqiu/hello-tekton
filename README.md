@@ -88,7 +88,9 @@ known_host:
 
 ```
 cat ~/.ssh/known_hosts | base64 | tr -d '\n'
+```
 or
+```
 ssh-keyscan github.com | base64 | tr -d '\n'
 ```
 
