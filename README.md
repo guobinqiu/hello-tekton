@@ -6,7 +6,7 @@ Ways of building:
 
 ```
   1. PipelineRun -> Pipeline -> Task -> Step
-  2. TaskRun -> Task -> Step (this is what I picked up for testcases)
+  2. TaskRun -> Task -> Step (this was picked up for testcases)
   3. EventListener -> TriggerTemplate -> PipelineRun
   4. EventListener -> TriggerTemplate -> TaskRun
 ```
