@@ -2,18 +2,16 @@
 
 > https://tekton.dev/
 
-构建方式:
+Ways of building:
 
 ```
   1. PipelineRun -> Pipeline -> Task -> Step
-  2. TaskRun -> Task -> Step
+  2. TaskRun -> Task -> Step (this is what I picked up for testcases)
   3. EventListener -> TriggerTemplate -> PipelineRun
   4. EventListener -> TriggerTemplate -> TaskRun
 ```
 
-Tekton设计的粒度很细, 我们选择从TaskRun开始构建比从PiplineRun开始构建简单得多,另外我们手动执行测试用例也是不需要事件触发的, 所以采用方式2
-
-为了打好基础, 我们不用`Tekton Catalog`, 纯手写`git`和`docker`操作
+We don't use `Tekton Catalog`, simply write `git` and `docker` manually
 
 ## Testcases
 
