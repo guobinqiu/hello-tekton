@@ -1,0 +1,57 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: key-for-docker
+  namespace: tekton-demo
+  annotations:
+    tekton.dev/docker-0: https://index.docker.io/v1/
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: ewoJImF1dGhzIjogewoJCSJodHRwcz...
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: docker-service-account
+  namespace: tekton-demo
+secrets:
+  - name: key-for-docker
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-docker1
+  namespace: tekton-demo
+spec:
+  sidecars:
+    - name: docker-dind
+      image: docker:dind
+      env:
+        - name: DOCKER_TLS_CERTDIR
+          value: ""
+        - name: DOCKER_HOST
+          value: tcp://0.0.0.0:2375
+      securityContext:
+        privileged: true
+  steps:
+    - name: docker-checkout
+      image: docker
+      env:
+        - name: DOCKER_HOST
+          value: tcp://localhost:2375
+      script: |
+        #!/usr/bin/env sh
+        while ! docker info; do sleep 1; done
+        docker pull qiuguobin/hellogo
+        docker images
+---
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: taskrun-docker1
+  namespace: tekton-demo
+spec:
+  serviceAccountName: docker-service-account
+  taskRef:
+    name: task-docker1

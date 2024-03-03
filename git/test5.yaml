@@ -1,0 +1,48 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: key-for-git
+  namespace: tekton-demo
+  annotations:
+    tekton.dev/git-0: github.com
+type: kubernetes.io/basic-auth
+stringData:
+  username: guobinqiu
+  password: ghp_3OaFyikn4RqaG...
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-git5
+  namespace: tekton-demo
+spec:
+  workspaces:
+    - name: source
+  steps:
+    - name: git-checkout
+      image: alpine/git
+      envFrom:
+        - secretRef:
+            name: key-for-git
+      script: |
+        #!/usr/bin/env sh
+        cd $(workspaces.source.path)
+        git clone https://${username}:${password}@github.com/guobinqiu/hack.git .
+    - name: show-readme
+      image: alpine
+      script: |
+        #!/usr/bin/env sh
+        cat $(workspaces.source.path)/README.md
+---
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: taskrun-git5
+  namespace: tekton-demo
+spec:
+  taskRef:
+    name: task-git5
+  workspaces:
+    - name: source
+      emptyDir: {}

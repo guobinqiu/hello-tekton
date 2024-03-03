@@ -1,0 +1,66 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: key-for-docker
+  namespace: tekton-demo
+  annotations:
+    tekton.dev/docker-0: https://index.docker.io/v1/
+type: kubernetes.io/basic-auth
+stringData:
+  username: qiuguobin
+  password: dckr_pat_DamamBGkd3L...
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-docker4
+  namespace: tekton-demo
+spec:
+  sidecars:
+    - name: docker-dind
+      image: docker:dind
+      env:
+        - name: DOCKER_TLS_CERTDIR
+          value: ""
+        - name: DOCKER_HOST
+          value: tcp://0.0.0.0:2375
+      securityContext:
+        privileged: true
+  steps:
+    - name: docker-checkout
+      image: docker
+      env:
+        - name: DOCKER_HOST
+          value: tcp://localhost:2375
+      envFrom:
+        - secretRef:
+            name: key-for-docker
+      script: |
+        #!/usr/bin/env sh
+        mkdir -p ~/.docker
+        DOCKER_REGISTRY=https://index.docker.io/v1/
+        AUTH_VALUE=$(echo -n "${username}:${password}" | base64)
+        cat <<EOF > ~/.docker/config.json
+        {
+          "auths": {
+            "$DOCKER_REGISTRY": {
+              "auth": "$AUTH_VALUE"
+            }
+          }
+        }
+        EOF
+        chmod 600 ~/.docker/config.json
+        cat ~/.docker/config.json
+        while ! docker info; do sleep 1; done
+        docker pull qiuguobin/hellogo
+        docker images
+---
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: taskrun-docker4
+  namespace: tekton-demo
+spec:
+  taskRef:
+    name: task-docker4

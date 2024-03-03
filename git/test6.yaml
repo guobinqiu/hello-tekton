@@ -1,0 +1,43 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-git6
+  namespace: tekton-demo
+spec:
+  params:
+    - name: username
+      type: string
+    - name: password
+      type: string
+  workspaces:
+    - name: source
+  steps:
+    - name: git-checkout
+      image: alpine/git
+      script: |
+        #!/usr/bin/env sh
+        cd $(workspaces.source.path)
+        git clone https://$(params.username):$(params.password)@github.com/guobinqiu/hack.git .
+    - name: show-readme
+      image: alpine
+      script: |
+        #!/usr/bin/env sh
+        cat $(workspaces.source.path)/README.md
+---
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: taskrun-git6
+  namespace: tekton-demo
+spec:
+  params:
+    - name: username
+      value: guobinqiu
+    - name: password
+      value: ghp_3OaFyikn4RqaG...
+  taskRef:
+    name: task-git6
+  workspaces:
+    - name: source
+      emptyDir: {}
