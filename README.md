@@ -112,3 +112,5 @@ config:
 ```
 cat ~/.kube/config | base64 | tr -d '\n'
 ```
+
+![Uploading Snipaste_2024-03-04_14-13-12.png…]()
