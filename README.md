@@ -70,12 +70,12 @@ We don't use `Tekton Catalog`, simply get `github` and `dockerhub` working on pr
 [test1.yaml](kube/test1.yaml)
 
 - common auth
-- with DNS
+- Hosts
 
 [test2.yaml](kube/test2.yaml)
 
 - common auth
-- without DNS
+- No hosts
 
 ## Get auth string
 
