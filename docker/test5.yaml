@@ -1,4 +1,9 @@
 ---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tekton-demo
+---
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
