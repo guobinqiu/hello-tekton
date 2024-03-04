@@ -1,3 +1,5 @@
+# - dockerconfigjson auth
+# - without sa
 ---
 apiVersion: v1
 kind: Namespace

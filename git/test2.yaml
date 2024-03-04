@@ -1,3 +1,5 @@
+# - ssh auth without known_hosts
+# - with sa
 ---
 apiVersion: v1
 kind: Namespace

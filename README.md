@@ -52,12 +52,12 @@ We don't use `Tekton Catalog`, simply get `github` and `dockerhub` working on pr
 
 [test1.yaml](docker/test1.yaml) (Recommended)
 
-- ssh auth
+- dockerconfigjson auth
 - with sa
 
 [test2.yaml](docker/test2.yaml)
 
-- ssh auth
+- dockerconfigjson auth
 - without sa
 
 [test3.yaml](docker/test3.yaml)
@@ -72,7 +72,7 @@ We don't use `Tekton Catalog`, simply get `github` and `dockerhub` working on pr
 
 [test5.yaml](docker/test5.yaml)
 
-- without ssh auth
+- without dockerconfigjson auth
 - without basic auth
 - without sa
 
@@ -80,11 +80,13 @@ We don't use `Tekton Catalog`, simply get `github` and `dockerhub` working on pr
 
 [test1.yaml](kube/test1.yaml)
 
-- with `/etc/hosts` file
+- common auth
+- with DNS
 
 [test2.yaml](kube/test2.yaml)
 
-- with `--server` argument
+- common auth
+- without DNS
 
 ## Get auth string
 
