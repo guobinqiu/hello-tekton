@@ -1,15 +1,4 @@
-# Tekton Practice
-
-> https://tekton.dev/
-
-Ways of building:
-
-```
-  1. PipelineRun -> Pipeline -> Task -> Step
-  2. TaskRun -> Task -> Step (this was picked up for testcases)
-  3. EventListener -> TriggerTemplate -> PipelineRun
-  4. EventListener -> TriggerTemplate -> TaskRun
-```
+# Tekton TaskRuns
 
 We don't use `Tekton Catalog`, simply get `github` and `dockerhub` working on private repositories manually
 
