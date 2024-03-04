@@ -113,4 +113,4 @@ config:
 cat ~/.kube/config | base64 | tr -d '\n'
 ```
 
-![Uploading Snipaste_2024-03-04_14-13-12.png…]()
+<img width="1488" alt="Snipaste_2024-03-04_14-13-12" src="https://github.com/guobinqiu/hello-tekton/assets/5800822/e09633f9-d938-4306-9568-472b9cba49c3">
