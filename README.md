@@ -11,7 +11,7 @@ Ways of building:
   4. EventListener -> TriggerTemplate -> TaskRun
 ```
 
-We don't use `Tekton Catalog`, simply write `github` and `dockerhub` private repositories manually
+We don't use `Tekton Catalog`, simply get `github` and `dockerhub` working on private repositories manually
 
 ## Testcases
 
@@ -76,7 +76,19 @@ We don't use `Tekton Catalog`, simply write `github` and `dockerhub` private rep
 - without basic auth
 - without sa
 
-### Get auth string
+### kube
+
+[test1.yaml](kube/test1.yaml)
+
+- with `/etc/hosts` file
+
+[test2.yaml](kube/test2.yaml)
+
+- with `--server` argument
+
+## Get auth string
+
+### git
 
 ssh-privatekey:
 
@@ -94,8 +106,18 @@ or
 ssh-keyscan github.com | base64 | tr -d '\n'
 ```
 
+### docker
+
 .dockerconfigjson:
 
 ```
 cat ~/.docker/config.json | base64 | tr -d '\n'
+```
+
+### kube
+
+config:
+
+```
+cat ~/.kube/config | base64 | tr -d '\n'
 ```
