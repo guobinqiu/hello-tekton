@@ -119,3 +119,4 @@ cat ~/.kube/config | base64 | tr -d '\n'
 kustomize build ./trigger | kubectl apply -f -
 curl -H 'content-Type: application/json' -d '{"username": "Tekton"}' http://hello-listener.example.com
 ```
+<img width="1496" alt="Snipaste_2024-03-05_13-30-58" src="https://github.com/guobinqiu/hello-tekton/assets/5800822/6f7f741b-a1ab-4283-b289-9bbea345067e">
