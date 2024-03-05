@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: hello
+  namespace: tekton-demo
+spec:
+  params:
+    - name: username
+      type: string
+  steps:
+    - name: greeting
+      image: busybox
+      script: |
+        #!/usr/bin/env sh
+        echo "Hello, $(params.username)"

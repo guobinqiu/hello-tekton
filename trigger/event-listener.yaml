@@ -1,0 +1,14 @@
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: hello-listener
+  namespace: tekton-demo
+spec:
+  serviceAccountName: hello-rbac
+  triggers:
+    - name: hello-trigger
+      bindings:
+        - ref: hello-binding
+      template:
+        ref: hello-template

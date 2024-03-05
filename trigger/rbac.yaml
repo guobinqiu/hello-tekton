@@ -1,0 +1,33 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: hello-rbac
+  namespace: tekton-demo
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: triggers-hellogo-eventlistener-binding
+  namespace: tekton-demo
+subjects:
+  - kind: ServiceAccount
+    name: hello-rbac
+    namespace: tekton-demo
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: tekton-triggers-eventlistener-roles
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: triggers-hellogo-eventlistener-clusterbinding
+subjects:
+  - kind: ServiceAccount
+    name: hello-rbac
+    namespace: tekton-demo
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: tekton-triggers-eventlistener-clusterroles

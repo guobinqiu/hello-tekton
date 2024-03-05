@@ -1,0 +1,21 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: hello-template
+  namespace: tekton-demo
+spec:
+  params:
+    - name: username
+      default: world
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: TaskRun
+      metadata:
+        generateName: hello-run-
+        namespace: tekton-demo
+      spec:
+        taskRef:
+          name: hello
+        params:
+          - name: username
+            value: $(tt.params.username)

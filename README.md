@@ -70,12 +70,12 @@ We don't use `Tekton Catalog`, simply get `github` and `dockerhub` working on pr
 [test1.yaml](kube/test1.yaml)
 
 - common auth
-- Hosts
+- /etc/hosts
 
 [test2.yaml](kube/test2.yaml)
 
 - common auth
-- No hosts
+- No /etc/hosts
 
 ## Get auth string
 
@@ -113,6 +113,9 @@ config:
 cat ~/.kube/config | base64 | tr -d '\n'
 ```
 
-## Tekton WebUI
+## Trigger
 
-<img width="1488" alt="Snipaste_2024-03-04_14-13-12" src="https://github.com/guobinqiu/hello-tekton/assets/5800822/e09633f9-d938-4306-9568-472b9cba49c3">
+```
+kustomize build ./trigger | kubectl apply -f -
+curl -H 'content-Type: application/json' -d '{"username": "Tekton"}' http://hello-listener.example.com
+```
