@@ -1,6 +1,4 @@
-# Tekton TaskRuns
-
-We don't use `Tekton Catalog`, simply get `github` and `dockerhub` working on private repositories manually
+# Tekton
 
 ## Testcases
 
